@@ -87,6 +87,34 @@ public class bloodbank {
 
                 case 3:
                     System.out.println("Search for an Donors");
+                    System.out.println("Enter the Donor's Name: ");
+                    donorname = input.next();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bloodbankdb", "root", "");
+                        String sql = "SELECT `phone`, `address`, `bloodgroup`, `age` FROM `donors` WHERE `name`="+donorname;
+
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        while(rs.next()){
+
+                            String fetchDonorPhone = rs.getString("phone");
+                            String fetchDonorAddress = rs.getString("address");
+                            String fetchBloodGroup = rs.getString("bloodgroup");
+                            String fetchDonorAge = rs.getString("age");
+
+                            System.out.println("Donor's Phone: "+fetchDonorPhone);
+                            System.out.println("Donor's Address: "+fetchDonorAddress);
+                            System.out.println("Donor's bloodgroup: "+fetchBloodGroup);
+                            System.out.println("Donor's Age: "+fetchDonorAge+"\n");
+
+                        }
+
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+
 
                     break;
                 case 4:
