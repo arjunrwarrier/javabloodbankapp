@@ -92,7 +92,7 @@ public class bloodbank {
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bloodbankdb", "root", "");
-                        String sql = "SELECT `phone`, `address`, `bloodgroup`, `age` FROM `donors` WHERE `name`="+donorname;
+                        String sql = "SELECT `phone`, `address`, `bloodgroup`, `age` FROM `donors` WHERE `name` = '"+donorname+"'";
 
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(sql);
