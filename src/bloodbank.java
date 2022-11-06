@@ -145,6 +145,20 @@ public class bloodbank {
                     break;
                 case 5:
                     System.out.println("Delete a Donor");
+                    System.out.println("Enter the donor name: ");
+                    donorname = input.next();
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bloodbankdb", "root", "");
+                        String sql = "DELETE FROM `donors` WHERE `name`= '" + donorname+"'";
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("Donor data deleted successfully.");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
 
                     break;
 
