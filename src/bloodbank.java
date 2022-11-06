@@ -119,6 +119,28 @@ public class bloodbank {
                     break;
                 case 4:
                     System.out.println("Update a Donor");
+                    System.out.println("Enter the name: ");
+                    donorname = input.next();
+                    System.out.println("Enter Donor's Phone to update: ");
+                    donorphone = input.next();
+                    System.out.println("Enter the Address to update: ");
+                    donoraddress = input.next();
+                    System.out.println("Enter the Blood Group to update: ");
+                    donorbloodgroup = input.next();
+                    System.out.println("Enter the Age to update: ");
+                    donorage = input.nextInt();
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bloodbankdb", "root", "");
+                        String sql = "UPDATE `donors` SET `phone`='"+donorphone+"',`address`='"+donoraddress+"',`bloodgroup`='"+donorbloodgroup+"',`age`='"+donorage+"' WHERE `name` = '" + donorname+"'";
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("Donor details updated successfully.");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
 
                     break;
                 case 5:
